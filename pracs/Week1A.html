@@ -1,0 +1,162 @@
+<div id="dp-wrapper" class="dp-wrapper">
+    <div class="dp-content-block content-block">
+        <p><span>This page outlines the key tasks for this week's <strong>Workshop 1</strong>.&nbsp;</span></p>
+    </div>
+    <div class="dp-content-block" data-title="Activity" data-category="Activity">
+        <h3>Workshop tasks</h3>
+        <h4>Task 1: Environment Check and Project Bootstrap (<em>15 m</em>)</h4>
+        <div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+            <div class="card-body">
+                <h3 class="card-title">Procedure</h3>
+                <ol style="list-style-type: decimal;">
+                    <li>In a clean folder, run <code>dotnet new console -n IntroTopic</code>.</li>
+                    <li>Open in VS Code and run with dotnet run.</li>
+                    <li>Set a breakpoint in <code>Program.cs</code>, step through, and inspect variables.</li>
+                </ol>
+                <h3 class="card-title">Output</h3>
+                <ul>
+                    <li>Screenshot of <code>dotnet --info</code>.</li>
+                    <li>Screenshot of a successful debug session hitting a breakpoint.</li>
+                </ul>
+            </div>
+        </div>
+        <br />
+        <h4>Task 2: Python-to-C# Translation (<em>35 m</em>)</h4>
+        <p><strong>Objective:</strong></p>
+        <p>Practise translating a short Python program into equivalent C# code.</p>
+        <p>This helps you understand how Python&rsquo;s dynamic, interpreted model compares to C#&rsquo;s compiled, statically typed structure.</p>
+        <p><strong>Given Python Program</strong></p>
+        <pre># payroll_calculator.py<br />TAX_RATE = 0.2<br /><br />def calculate_pay(hours, rate):<br />&nbsp; &nbsp; if hours &lt; 0 or rate &lt; 0:<br />&nbsp; &nbsp; &nbsp; &nbsp; raise ValueError("Hours and rate must be positive.")<br />&nbsp; &nbsp; gross = hours * rate<br />&nbsp; &nbsp; tax = gross * TAX_RATE<br />&nbsp; &nbsp; net = gross - tax<br />&nbsp; &nbsp; return net<br /><br />def main():<br />&nbsp; &nbsp; name = input("Enter employee name: ")<br />&nbsp; &nbsp; hours = float(input("Hours worked: "))<br />&nbsp; &nbsp; rate = float(input("Hourly rate: "))<br />&nbsp; &nbsp; net_pay = calculate_pay(hours, rate)<br />&nbsp; &nbsp; print(f"{name} earned ${net_pay:.2f} after tax.")<br /><br />if __name__ == "__main__":<br />&nbsp; &nbsp; main()</pre>
+        <p><strong>Your Task: Translate to C#</strong></p>
+        <ol>
+            <li>Create a new console project:</li>
+            <li><code>dotnet new console -n PayrollCalculator</code></li>
+            <li><code>&gt;cd PayrollCalculator</code></li>
+            <li>Implement the equivalent logic in C#:
+                <ul>
+                    <li>Create a <strong>constant</strong> for the tax rate.</li>
+                    <li>Define a <strong>static method</strong> <code>CalculatePay(double hours, double rate)</code> returning a <code>double</code>.</li>
+                    <li>Use <strong>try catch</strong> to handle invalid input.</li>
+                    <li>Request input using <code>Console.ReadLine()</code>.</li>
+                    <li>Convert inputs with <code>double.Parse()</code> or <code>double.TryParse()</code>.</li>
+                    <li>Output formatted currency using string interpolation (<code>$"{value:F2}"</code>).</li>
+                </ul>
+            </li>
+            <li>Compile and run:</li>
+            <li><code>dotnet run</code></li>
+        </ol>
+        <div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary dp-callout-type-default">
+            <div class="card-body">
+                <h3 class="card-title">Example Expected Output</h3>
+                <pre>Enter employee name: Casey<br />Hours worked: 38<br />Hourly rate: 42.5<br />Casey earned $1292.00 after tax.</pre>
+            </div>
+        </div>
+        <div class="dp-panels-wrapper dp-accordion-default">
+            <div class="dp-panel-group">
+                <h3 class="dp-panel-heading ">Extension Challenge (Optional)</h3>
+                <div class="dp-panel-content ">
+                    <ul>
+                        <li>Add rounding to two decimal places.</li>
+                        <li>Handle invalid input using exception handling (<code>FormatException, ArgumentException</code>).</li>
+                        <li>Refactor your logic into a separate class <code>Payroll</code> with a static method <code>CalculatePay</code>.</li>
+                    </ul>
+                    <div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+                        <div class="card-body">
+                            <h3 class="card-title">Output Submission</h3>
+                            <ul>
+                                <li>A working <code>Program.cs</code> file containing your translated and tested code.</li>
+                                <li>A short text file (<code>Note.txt</code>) describing at least <strong>three</strong> differences you noticed between Python and C#, for example:
+                                    <ul>
+                                        <li>Input parsing is explicit (<code>double.Parse() vs float()</code>).</li>
+                                        <li>Variables must be declared with a type.</li>
+                                        <li>Errors are checked at compile-time rather than at runtime.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <h4>Task 3: First Class Model (<em>40 m)</em></h4>
+        <p>Create a <code>Person</code> class with:</p>
+        <ul>
+            <li>Auto-properties: <code>FirstName, LastName, Age</code>.</li>
+            <li>Constructor validations.</li>
+            <li>Method <code>FullName()</code> returning &ldquo;LastName, FirstName&rdquo;.</li>
+        </ul>
+        <div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+            <div class="card-body">
+                <h3 class="card-title">Procedure</h3>
+                <ol style="list-style-type: decimal;">
+                    <li>
+                        <p>Add <code>Person.cs</code> and instantiate in <code>Program.cs</code>.</p>
+                    </li>
+                    <li>
+                        <p>Demonstrate property use and method call.</p>
+                    </li>
+                    <li>
+                        <p>Add a second method <code>IsAdult()</code> returning a <code>bool</code>.</p>
+                    </li>
+                </ol>
+                <h3 class="card-title">Output</h3>
+                <ul>
+                    <li>
+                        <p><code>Person.cs</code> and updated <code>Program.cs</code>.</p>
+                    </li>
+                    <li>
+                        <p>Console output screenshot demonstrating both methods.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <h4>Task 4: Git Hygiene (<em>30 m</em>)</h4>
+        <div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+            <div class="card-body">
+                <h3 class="card-title">Procedure</h3>
+                <ol style="list-style-type: decimal;">
+                    <li><code>git init</code>, add <code>a .gitignore</code> for .NET.</li>
+                    <li>Make three small commits:
+                        <ol style="list-style-type: decimal;">
+                            <li>&nbsp;&ldquo;feat: translate payroll to C#&rdquo;</li>
+                            <li>&nbsp;&ldquo;feat: add Person class with validation&rdquo;</li>
+                            <li>&ldquo;chore: add .gitignore and README&rdquo;</li>
+                        </ol>
+                    </li>
+                    <li>Push to your private GitHub repo if available.
+                        <ol style="list-style-type: decimal;">
+                            <li><strong>Initialise the repository</strong><br />Open a terminal in the project folder and run
+                                <pre>git init</pre>
+                            </li>
+                            <li><strong>Create a .gitignore suited for .NET</strong><br />Add a file named <code>.gitignore</code> in the root with the standard .NET ignores. The simplest way is
+                                <pre>dotnet new gitignore</pre>
+                                This generates the Microsoft-maintained template (ignores bin, obj, user files, etc.).
+                            </li>
+                            <li><strong>Stage and commit the first change</strong><br />Translate your old payroll code into C# (or whatever &ldquo;payroll&rdquo; refers to in your context), add the files, then commit:
+                                <pre>git add .<br />git commit -m "feat: translate payroll to C#"</pre>
+                            </li>
+                            <li><strong>Add the Person class and commit</strong><br />After creating <code>Person.cs</code> and updating <code>Program.cs</code>, stage and commit again:
+                                <pre>git add Person.cs Program.cs<br />git commit -m "feat: add Person class with validation"</pre>
+                            </li>
+                            <li><strong>Add housekeeping files and commit</strong><br />Create or update your README, confirm <code>.gitignore</code> exists, then commit:
+                                <pre>git add .gitignore README.md<br />git commit -m "chore: add .gitignore and README"</pre>
+                            </li>
+                            <li><strong>Push to GitHub&nbsp;</strong><br />If you already have a private GitHub repo, add it as the remote:
+                                <pre>git remote add origin https://github.com/&lt;your-username&gt;/&lt;repo&gt;.git</pre>
+                                <strong>Push the main branch:</strong>
+                                <pre>git branch -M main<br />git push -u origin main</pre>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+                <h3 class="card-title">Output</h3>
+                <ul>
+                    <li><code>git log --oneline</code> screenshot showing the three commits.&nbsp;</li>
+                    <li>Repository URL or local log if offline.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
