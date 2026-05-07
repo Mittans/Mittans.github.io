@@ -1,1 +1,219 @@
-Index.html
+<div id="dp-wrapper" class="dp-wrapper">
+<div class="dp-content-block content-block">
+<p><span>This page outlines the key tasks for this week's <strong>Prac B</strong>.</span></p>
+</div>
+<p class="dp-content-block" data-title="Activity" data-category="Activity">&nbsp;</p>
+<h3>Workshop tasks</h3>
+<p>&nbsp;</p>
+<h4>Task 1: Using <code>SortedDictionary</code> for Player Rankings (20<em> m</em>)</h4>
+<p>Implement a basic ranking system using a <code>SortedDictionary</code> where players&rsquo; scores are stored and retrieved in order.</p>
+<pre>var SortedScores = new SortedDictionary&lt;int, string&gt;();</pre>
+<p>Where the int key is the score, and the string is the Player name, then:</p>
+<ol style="list-style-type: decimal;">
+<li>Add 10 players with different scores. (Using the <code>.Add()</code> method)</li>
+<li>Print the top three scores.</li>
+<li>Print the bottom three scores.</li>
+<li>Find a particular player who has left the game, and remove them, then print the remaining players.</li>
+<li>Attempt to add a player with the same score as another player, but a different name.</li>
+<li>Attempt to add a player with a different score, but the same name as another player.</li>
+</ol>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary dp-callout-type-default">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li>&nbsp;Console output showing the rankings from steps 2 - 4 above.</li>
+<li>&nbsp;Screenshot of any errors from attempting to add new records in the final 2 steps above.</li>
+</ul>
+</div>
+</div>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary cp-out-primary dp-border-dir-all dp-callout-type-info dp-action-box dp-action">
+<div class="dp-callout-side-emphasis"><i class="dp-icon far fa-hand-pointer dp-default-icon">​</i></div>
+<div class="card-body">
+<h3 class="card-title">Reflection</h3>
+<ul>
+<li>What is the data structure backing the <code>SortedDictionary</code>? How did you find out?</li>
+<li>What happened when you tried to add the a duplicate score? Why?</li>
+<li>Contrast <code>SortedSet</code> and <code>SortedDictionary</code>. Provide an example of when each might be useful.</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;</p>
+<h4>Task 2: Using <code>SortedDictionary</code> for Player Rankings Pt 2. (3<em>0 m</em>)</h4>
+<p>Ok, just like the previous prac, let's create a <code>SortedDictionary</code> that's a bit more interesting.</p>
+<p>&nbsp;We'll use a custom class, <code>ScoreEntry.cs</code> as our key. And a <code>Player.cs</code> class as the value. I've provided some basic classes below, but feel free to make your own (or use your Player.cs from the assignment, if you'd like.</p>
+<div class="dp-panels-wrapper dp-accordion-default">
+<div class="dp-panel-group">
+<h3 class="dp-panel-heading "><span>ScoreEntry.cs</span></h3>
+<div class="dp-panel-content">
+<div>
+<div>
+<div>
+<pre>public class ScoreEntry<br />{<br />&nbsp; &nbsp; public ScoreEntry(int score, int stageReached, DateTime achievedAt)<br />&nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; &nbsp; Score = score;<br />&nbsp; &nbsp; &nbsp; &nbsp; StageReached = stageReached;<br />&nbsp; &nbsp; &nbsp; &nbsp; AchievedAt = achievedAt;<br />&nbsp; &nbsp; }<br /><br />&nbsp; &nbsp; public ScoreEntry(int score, int levelReached) : this(score, levelReached, DateTime.Now)<br />&nbsp; &nbsp; {<br /><br />&nbsp; &nbsp; }<br /><br />&nbsp; &nbsp; public int Score { get; set; }<br />&nbsp; &nbsp; public int StageReached { get; set; }<br />&nbsp; &nbsp; public DateTime AchievedAt { get; set; }<br />}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dp-panels-wrapper dp-accordion-default">
+<div class="dp-panel-group">
+<h3 class="dp-panel-heading "><span>Player.cs</span></h3>
+<div class="dp-panel-content">
+<div>
+<div>
+<div>
+<pre>public class Player<br />{<br />&nbsp; &nbsp; public Player(string name, int health = 100, int attack = 10, int defence = 5)<br />&nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; &nbsp; Name = name;<br />&nbsp; &nbsp; &nbsp; &nbsp; Health = health;<br />&nbsp; &nbsp; &nbsp; &nbsp; Attack = attack;<br />&nbsp; &nbsp; &nbsp; &nbsp; Defence = defence;<br />&nbsp; &nbsp; }<br />&nbsp; &nbsp; public string Name { get; set; }<br /><br />&nbsp; &nbsp; int Health { get; set; }<br /><br />&nbsp; &nbsp; int Attack { get; set; }<br />&nbsp; &nbsp; int Defence { get; set; }<br /><br />&nbsp; &nbsp; public override string ToString()<br />&nbsp; &nbsp; {<br />&nbsp; &nbsp; &nbsp; &nbsp; string info = $"""<br />&nbsp; &nbsp; &nbsp; Name: {Name} the mighty!<br />&nbsp; &nbsp; &nbsp; Stats: HP={Health}, ATK={Attack}, DEF={Defence}<br />&nbsp; &nbsp; &nbsp; """;<br />&nbsp; &nbsp; &nbsp; &nbsp; return info;<br />&nbsp; &nbsp; }<br />}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Implement a better ranking system using a <code>SortedDictionary</code> where players&rsquo; scores are stored and retrieved in order. ScoreEntry is the key, and Player is the value.</p>
+<pre>var SortedScores2 = new SortedDictionary&lt;ScoreEntry, Player&gt;();</pre>
+<p>Then:</p>
+<ol style="list-style-type: decimal;">
+<li>Make an assortment of 10 Player &amp; ScoreEntry objects.</li>
+<li>Attempt to add these ScoreEntries to the <code>SortedDictionary</code>, remember this familiar error?</li>
+<li>Write a <code>ScoreComparer</code> for ScoreEntry that compares based on Score first, and then on either <code>StageReached</code>, or <code>AchievedAt</code> (your choice).<br />(You might want to go back to the previous prac if you missed it for writing an IComparer class)</li>
+<li>Add all the ScoreEntry and Players to the <code>SortedDictionary</code>.</li>
+<li>Print the top three scores.</li>
+<li>Print the bottom three scores.</li>
+<li>Find a particular player who has left the game, and remove them, then print the remaining players.</li>
+<li>Add a Player value with the same Score as another player, but a <code>StageReached</code> / <code>AchievedAt</code>.</li>
+<li>Add a key with a different score, but the same Player object value.</li>
+</ol>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary dp-callout-type-default">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li>&nbsp;Console output showing the rankings from step 5 - 7 above.</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;</p>
+<h4>Task 3: Using <code>PriorityQueue</code> for Priority Player Scheduling (1<em>5&nbsp;m)</em></h4>
+<p>Let's use another automatically sorted data structure, this time based on a simple Event scheduling system using a <code>PriorityQueue&lt;Player, int&gt;</code>.</p>
+<ol style="list-style-type: decimal;">
+<li>Re-use some of your Players and <code>Enqueue()</code> them to your <code>PriorityQueue</code> with an integer based priority (lower int value = higher priority):</li>
+<li>Process them in order, and print the results:
+<pre>while (EventQueue.Count != 0)<br />  {<br />    Console.WriteLine(EventQueue.Dequeue());<br />  }</pre>
+</li>
+<li>Add a Player with the same Priority as another player and determine what happens.</li>
+</ol>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li class="card-text">&nbsp;Screenshot of console output showing steps 2 &amp; 3.</li>
+</ul>
+</div>
+</div>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary cp-out-primary dp-border-dir-all dp-callout-type-info dp-action-box dp-action">
+<div class="dp-callout-side-emphasis"><i class="dp-icon far fa-hand-pointer dp-default-icon">​</i></div>
+<div class="card-body">
+<h3 class="card-title">Reflection</h3>
+<ul>
+<li>What data structure backs a PriorityQueue? How did you find out?</li>
+<li>What happens when you Enqueue two different players with the same priority?</li>
+<li>Why does a PriorityQueue permit duplicates when a SortedSet does not?</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;</p>
+<h4>Task 4: Using <code>PriorityQueue</code> for Priority Player Scheduling Pt 2. (15<em> m)</em></h4>
+<p>Just like last time, let's create a new PriorityQueue, this time with an enum for Priority instead of an int.</p>
+<pre>public enum Priority<br />{<br />&nbsp; &nbsp; HighPriority,<br />&nbsp; &nbsp; MediumPriority,<br />&nbsp; &nbsp; LowPriority,<br />}</pre>
+<p><code>var EventQueue2 = new PriorityQueue&lt;Player, Priority&gt;</code></p>
+<ol style="list-style-type: decimal;">
+<li>Re-use some of your Players and <code>Enqueue()</code> them to your new <code>PriorityQueue</code> with an enum based priority</li>
+<li>Process them in order, and print the results</li>
+<li>Add a Player with the same Priority as another player and determine what happens.</li>
+</ol>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li class="card-text">&nbsp;Screenshot of console output showing steps 2 &amp; 3.</li>
+</ul>
+</div>
+</div>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary cp-out-primary dp-border-dir-all dp-callout-type-info dp-action-box dp-action">
+<div class="dp-callout-side-emphasis"><i class="dp-icon far fa-hand-pointer dp-default-icon">​</i></div>
+<div class="card-body">
+<h3 class="card-title">Reflection</h3>
+<ul>
+<li>In previous Tasks we've had to implement IComparer or IComparable to get priority working, why wasn't it required for our Priority enum?</li>
+<li>If instead of an enum, we used a Struct with one prop <code>int Priority {get; set;} = 0</code>, would we need to use implement IComparer or IComparable? Why or why not?</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;</p>
+<h4>Task 5: Logging Basics (Optional):</h4>
+<p>(It took me until after the first classes to get this Task ready, so it's optional. It's still worthwhile to know, though)</p>
+<p>One of the sore points for Logging in C# (at least in my opinion) is that it only comes in 2 flavours -- very basic and industrial strength.</p>
+<p>If you take a look the docs: <a href="https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/overview" target="_blank" rel="noopener">https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/overview</a></p>
+<p>You'll see Microsoft doesn't provide a native Logging package and instead relies on some NuGet packages, and is mostly concerned with the industrial strength application. <br />So what can we do if we don't need the fancy stuff and just want a little bit of logging for our application?</p>
+<p>One Option is just to rely on terminal features to capture the output of your program. <br />You might do this when you're running a program on a server, and won't have eyes on the output. Instead to you can capture that output to a file, and check it later.</p>
+<ol style="list-style-type: decimal;">
+<li>Make sure your Program.cs / Main method includes some <code>Console.WriteLine()</code> outputs</li>
+<li>Use the VS Code Integrated Terminal to do <code>dotnet run</code> just to make sure you're in the right folder</li>
+<li>do <code>dotnet run &gt; log.txt</code> and check to see the log.txt output</li>
+</ol>
+<p>Helpful, huh? By using the <code>&gt;</code> symbol, we're telling <code>dotnet run</code> to redirect the output from the terminal into a file.<br />Be aware that this is a <em>redirect,</em> so it's writing the output to the log <em>instead of</em> to the Console.</p>
+<p>One thing to note, is that this won't capture some types of output. For example, try this:</p>
+<ol style="list-style-type: decimal;">
+<li>At the end of your Program.cs, after you've written everything you need to the Console, let's introduce an exception to simulate a bug.</li>
+<li>Throw a basic Exception: <code>throw new Exception("Encounted a bug, exiting the program.");</code></li>
+<li>Do <code>dotnet run &gt; log.txt</code> and check to see the log.txt output.</li>
+</ol>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary cp-out-primary dp-border-dir-all dp-callout-type-info dp-action-box dp-action">
+<div class="dp-callout-side-emphasis"><i class="dp-icon far fa-hand-pointer dp-default-icon">​</i></div>
+<div class="card-body">
+<h3 class="card-title">Reflection</h3>
+<ul>
+<li>Where was the Exception text written? To the Console or the log.txt?</li>
+<li>What happened to the contents of log.txt? Did the program append to the log and overwrite it?</li>
+</ul>
+</div>
+</div>
+<ol style="list-style-type: decimal;">
+<li>To fix the first point, we can do <code>dotnet run &gt; log.txt 2&gt;&amp;1</code></li>
+<li>And to fix the second point, we can do <code>dotnet run &gt;&gt; log.txt 2&gt;&amp;1</code></li>
+</ol>
+<p>Run the commands to check they work, and then answer the questions.</p>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary cp-out-primary dp-border-dir-all dp-callout-type-info dp-action-box dp-action">
+<div class="dp-callout-side-emphasis"><i class="dp-icon far fa-hand-pointer dp-default-icon"><span class="dp-icon-content" style="display: none;">&nbsp;</span></i></div>
+<div class="card-body">
+<h3 class="card-title">Reflection</h3>
+<ul>
+<li>What on earth does adding 2&gt;&amp;1 mean? Why does it fix our problem?</li>
+<li>How is <code>&gt;&gt;</code> different to <code>&gt;</code> ?</li>
+</ul>
+</div>
+</div>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li class="card-text">&nbsp;Screenshot of your log.txt showing both regular output and error output has been captured.</li>
+</ul>
+</div>
+</div>
+<p>(If you're wondering how to output text to both the Console <em>and</em> a file, you can use the <code>tee</code> command. Although this might be Mac / Linux only: <code>dotnet run 2&gt;&amp;1 | tee -a log.txt</code>)&nbsp;</p>
+<p>Ok, while this is a good start. It's not really a <em>good</em> log because there's no metadata attached to it.</p>
+<p>Typically, we'd at least like our logs to include a timestamp, as well as some sort of categorisation (e.g. is it an info message or critical error).</p>
+<p>Adding this metadata means if we know the server was having problems at 1am on Tuesday the 1st of May, we can go searching through our logs for only "Error" tagged messages that happened around that time, instead of sifting through everything.</p>
+<p>&nbsp;</p>
+<p>Now, let's install the Logging package. Process is the same as ScottPlot in the last prac: <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging" target="_blank" rel="noopener">https://www.nuget.org/packages/Microsoft.Extensions.Logging</a></p>
+<p><img src="/courses/30652/files/5143594/preview" alt="image.png" width="684" height="67" /></p>
+<p>Next, import it into your Program.cs:</p>
+<p><code>using Microsoft.Extensions.Logging;</code></p>
+<p>Now setup the logging factory (required, and unfortunately overkill for our app). Chuck the following lines at the start of your <code>Main()</code> method:</p>
+<pre><code>using var loggerFactory = LoggerFactory.Create(builder =&gt;</code><br /><code>  {</code><br /><code>    builder</code><br /><code>  &nbsp; .SetMinimumLevel(LogLevel.Debug)</code><br /><code>  &nbsp; .AddConsole(options =&gt;</code><br /><code>  &nbsp; &nbsp;{</code><br /><code>  &nbsp; &nbsp;   options.FormatterName = "simple";</code><br /><code>  &nbsp;&nbsp; }).AddSimpleConsole(options =&gt;</code><br /><code>     {</code><br /><code>  &nbsp; &nbsp; options.TimestampFormat = "yyyy-MM-dd HH:mm:ss ";</code><br /><code>  &nbsp; &nbsp; options.SingleLine = true;</code><br /><code>     });</code><br /><code>  &nbsp;});<br /></code><br /><code>ILogger logger = loggerFactory.CreateLogger("Program");  </code></pre>
+<p>Now let's try outputting some logs! Try some of logger's methods:</p>
+<p><code>logger.LogInformation("Hello World");</code></p>
+<p>In addition to <code>LogInformation()</code>, we have various log levels, like <code>LogDebug()</code>, <code>LogWarning()</code>, <code>LogError()</code> and <code>LogCritical()</code></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
