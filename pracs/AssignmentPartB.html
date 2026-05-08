@@ -1,0 +1,340 @@
+---
+layout: template
+---
+<div class="description user_content teacher-version enhanced dp-wrapper-parent" data-resource-type="assignment.body" data-resource-id="111980"><div id="dp-wrapper" class="dp-wrapper">
+<div class="dp-content-block content-block" data-title="Centered Hero (Color BG)" data-category="Header" data-img="">
+<div class="dp-bg px-4 py-5 my-5 text-center cp-bg-dp-primary" style="margin-bottom: 0 !important; margin-top: 0 !important;"><header class="dp-header">
+<h2 class="dp-heading"><span class="dp-header-title" style="color: #ecf0f1;">Assessment 2: QuestForge Part B</span></h2>
+</header></div>
+</div>
+<div class="dp-content-block">
+<p>QuestForge continues as the same 2-D adventure game, but in Phases 3–4 the engine is extended to allow for more complex interactions, enforce game rules, and the efficiency and performance of your data structures are tested and measured. Movement must validate rules (such as required items or cleared events), Leaderboards must remain correct and persistent, and the engine must be tested for performance and memory behaviour as data sizes increase.</p>
+<p>Part B will be assessed by a code review at the end of the semester instead of a viva. In addition to code, there's also some Reflection questions and Screenshots you'll have to provide as part of your complexity analysis. Just like in your Portfolio, make sure these are in Reflection &amp; Screenshot folders respectively, and are clearly labled. Screenshots <em>must</em> be PNG's or JPEG's, and your Reflection notes <em>must</em> be in plaintext (.txt) or Markdown format (.md).</p>
+<p>Further, Part B has explicit penalties defined in the rubric for areas like unsufficient Git usage.</p>
+<p>&nbsp;</p>
+<p>In Phases 3–4 the focus shifts from “structures exist” to “structures behave correctly at scale”.</p>
+<ul>
+<li>Rule enforcement: Travel validation (required item present, boss encounter cleared, correct adjacency); Combat queue tracking (combat must continue until someone wins or flees); Combat order enforcement (players and enemies can't take more than 2 actions per turn); and GameEvent interrupts (player can take certain actions after peeking the next pending event). These rules sit on top of the same underlying collections and must be applied consistently.</li>
+<li>Observability: Conduct tests on code execution time using Stopwatch (<code class="KDcb0c" dir="ltr" data-sfc-root="c" data-sfc-cb="" data-processed="true">System.Diagnostics.Stopwatch</code>) and measure memory usage using the GarbageCollector (<code>GC.GetTotalMemory</code>) to produce growth graphs for critical operations at various scales (e.g. creating 100 items, 1,000 items, 10,000 items, etc.).</li>
+<li>Testing: In addition to regular unit tests for classes and methods you write, you also need to have a test that plays a complete sample game, and includes all the classes and functional requirements found in Phases 1 - 3.</li>
+<li>Analysis: Contrast observed timings/memory against the expected behaviour of the underlying structures and operations, and justify mismatches (for example, hashing cost, allocation patterns, resizing effects).</li>
+</ul>
+<p>The engine remains a library with console demonstrations and an xUnit test harness. You are still not building a game UI, or playing the game using console input (although you certainly can if you feel like the extra work).</p>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default w-100 dp-callout-color-dp-primary dp-callout-type-default">
+<div class="card-body">
+<p><strong>Due date: </strong>5th June, 2026 (Friday night).&nbsp;</p>
+<p><strong>Github Classroom: </strong>Continue using your Part&nbsp;A classroom<strong> </strong>(<a href="https://classroom.github.com/a/-gtM3BXs)" target="_blank" class="external" rel="noreferrer noopener"><span>https://classroom.github.com/a/-gtM3BXs</span><span class="external_link_icon" style="margin-inline-start: 5px; display: inline-block; text-indent: initial; " role="presentation"><svg viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" style="width:1em; height:1em; vertical-align:middle; fill:currentColor">
+    <path d="M1226.667 267c88.213 0 160 71.787 160 160v426.667H1280v-160H106.667v800C106.667 1523 130.56 1547 160 1547h1066.667c29.44 0 53.333-24 53.333-53.333v-213.334h106.667v213.334c0 88.213-71.787 160-160 160H160c-88.213 0-160-71.787-160-160V427c0-88.213 71.787-160 160-160Zm357.706 442.293 320 320c20.8 20.8 20.8 54.614 0 75.414l-320 320-75.413-75.414 228.907-228.906H906.613V1013.72h831.254L1508.96 784.707l75.413-75.414Zm-357.706-335.626H160c-29.44 0-53.333 24-53.333 53.333v160H1280V427c0-29.333-23.893-53.333-53.333-53.333Z" fill-rule="evenodd"></path>
+</svg>
+<span class="screenreader-only">Links to an external site.</span></span></a>)</p>
+<p><strong>Weighting: </strong>20% (Part B)</p>
+<p><strong>Type</strong>: Individual&nbsp;</p>
+</div>
+</div>
+</div>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default w-100 dp-callout-color-dp-primary dp-callout-type-title-bar">
+<div class="card-body">
+<h3 class="card-title">Course Learning Outcomes:&nbsp;</h3>
+<ul>
+<li>CLO1: Design, implement, test, and debug maintainable object-oriented computer programs in C#</li>
+<li>CLO2: Explain and apply the fundamental data structures (arrays, lists, stacks, queues, trees, heaps, hash tables, graphs) using C# libraries.&nbsp;</li>
+<li>CLO4: Use C# collection classes and library algorithms to solve practical software problems.</li>
+<li>CLO5: Apply coding standards, refactoring, and documentation practices to produce professional quality code.&nbsp;</li>
+<li>CLO6: Demonstrate readiness for implementing data structures and algorithms in a lower-level language (C++), including concepts of typing, memory awareness, and performance reasoning.&nbsp;</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;</p>
+<div class="dp-content-block">
+<h3>For Phase 3 and 4</h3>
+<p>Once the structural pieces and basic interactions of the engine exist, the real integration challenge begins. It is one thing to make the individual parts of the system work; it is another to make them work predictably and efficiently together.</p>
+<p>Part B also asks you to analyse how the game engine performs. Programming is often about identifiying weird edge-cases, bottlenecks, and making trade-offs. While these issues might be easier to ignore for simple programs, without the benefit of many years of experience, often these issues can only be understood after you've made the mistake. To help you understand some of these issues, you will create a large amount of data, and measure execution time and memory usage of your code.</p>
+<p>The skills developed here are not theoretical extras. These are the same techniques used in industry when diagnosing slow systems, memory leaks, or unpredictable behaviour. By the end of this assignment, you will understand not only how to build data structures, but have some insight on their performance and more experience to make informed choices about what approach fits the problem at hand.</p>
+<p>&nbsp;</p>
+<div class="dp-panels-wrapper dp-accordion-default">
+
+<h3 class="dp-panel-heading dp-panels-built active" id="dpPanel0"><a href="#dpPanel0" role="button" class="dp-panel-toggler " aria-controls="dpPanel0Content" aria-expanded="true"><i class="dp-panel-icon fas fa-caret-down" aria-hidden="true"></i> Sample Game</a></h3>
+<div class="dp-panel-content " tabindex="0" id="dpPanel0Content" style="" aria-labelledby="dpPanel0" role="region" aria-hidden="false">
+<p>This game is only a sample, and may not account for every game rule or action. Your game doesn't have follow this exact formula. However, your game engine output should look at least <em>vaguely similiar</em> to this.</p>
+<p>&nbsp;</p>
+<p><strong>Player</strong>: <em>Mittens the mighty</em>, begins his adventure<br><strong>Points</strong>: <em>0</em><br><strong>Zone</strong>: <em>Town</em><br><strong>Inventory</strong>: <em>Potion, Sword, Shield</em></p>
+<p><strong>Stats</strong>: <em>10 HP, 5 Attack, 0 Defence, 2 Combat Actions</em><br><strong>Events</strong>: <em>NPC Dialogue, Combat(Training Dummy), Loot(Common Item)</em></p>
+<p><strong>Mittens the mighty pops</strong> "<em>NPC Dialogue</em>" <strong>Event</strong>: "<em>Greetings traveler, before challenging the Outskirts, you would do well to test your might against this training dummy</em>."</p>
+<p><strong>Mittens tries to move </strong>to Outskirts. <em>Failure</em> (Must defeat Training Dummy).</p>
+<p><strong>Mittens the mighty pops</strong> "<strong>Combat </strong>(Training Dummy)". Combat begins.</p>
+<p><strong>Mittens</strong> <strong>queues</strong>: "<em>Attack, Attack</em>". Training Dummy <strong>queues</strong>: "<em>Do nothing, Taunt</em>".</p>
+<p><strong>Combat queue resolves</strong>, log reads: "<em>Mittens attacks! Training Dummy takes 0 damage</em>", "<em>Mittens attacks! Training Dummy takes 0 damage</em>", "<em>Training Dummy did nothing</em>", "<em>Training Dummy taunted you!</em>".</p>
+<p><strong>Round End</strong>. Mittens has 10 HP remaining. Training Dummy has 1 HP remaining.</p>
+<p><strong>Next round of combat begins</strong>.</p>
+<p><strong>Mittens</strong> <strong>queues</strong> "<em>Item -&gt; Use Sword</em>", "<em>Attack</em>". Training Dummy queues: "<em>Do nothing, Taunt</em>".</p>
+<p><strong>Combat queue resolves</strong>, log reads: "<em>Mittens equipped a Sword</em>", "<em>Mittens attacks! Training Dummy takes 5 damage</em>".</p>
+<p>Training dummy was defeated<strong>, combat ends.</strong></p>
+<p><strong>Mittens gains 1 score.</strong></p>
+<p><strong>Mittens the mighty pops Loot event</strong></p>
+<p><strong>Mittens loots a Potion.</strong></p>
+<p><strong>Mittens moves to Outskirts.</strong></p>
+<p>&nbsp;</p>
+<p><strong>Player</strong>: <em>Mittens the mighty</em>, arrives at the Outskirts<br><strong>Points</strong>: <em>1</em><br><strong>Zone</strong>: <em>Outskirts</em><br><strong>Inventory</strong>: <em>Potion, Potion, Shield</em></p>
+<p><strong>Stats</strong>: <em>10 HP, 10 Attack, 0 Defence, 2 Combat Actions</em><br><strong>Events</strong>: <em>NPC Dialogue,</em> <em>Combat(Goblin), Combat(Goblin King),&nbsp;Loot(Rare Item)</em></p>
+<p><strong>Mittens the mighty pops</strong> "<em>NPC Dialogue</em>" <strong>Event</strong>: "<em>Why yes, I know the way to the Castle, but I'm not telling you unless you defeat the Goblin King.</em>"</p>
+<p><strong>Mittens the mighty peeks</strong>&nbsp;"<strong>Combat </strong>(Goblin)".</p>
+<p><strong>Mittens the mighty pops</strong>&nbsp;"<strong>Combat </strong>(Goblin)". Combat begins</p>
+<p><strong>Mittens</strong> <strong>queues</strong>: "<em>Item -&gt; Use Shield, Attack</em>". Goblin <strong>queues</strong>: "<em>Attack, Attack</em>".</p>
+<p><strong>Combat queue resolves</strong>, log reads: "<em>Mittens equipped a Shield</em>", "<em>Mittens attacks! Goblin takes 5 damage</em>", "<em>Goblin Attacked, Mittens takes 3 damage</em>",&nbsp;"<em>Goblin Attacked, Mittens takes 3 damage</em>".</p>
+<p><strong>Round End</strong>. Mittens has 4 HP remaining. Goblin has 6 HP remaining.</p>
+<p><strong>Next round of combat begins</strong>.</p>
+<p><strong>Mittens</strong> <strong>queues</strong>: "<em>Item -&gt; Potion, Attack"</em> Goblin <strong>queues</strong>: "<em>Attack, Flee</em>".</p>
+<p><strong>Combat queue resolves</strong>, log reads: "Mittens <em>used a Potion and gained 10 HP</em>", "<em>Mittens attacks! Goblin takes 5 damage</em>", "<em>Goblin Attacked, Mittens takes 3 damage</em>",&nbsp;"<em>Goblin Flees</em>".</p>
+<p>Goblin Fled<strong>, combat ends.</strong></p>
+<p><strong>Mittens gains 1 score.</strong></p>
+<p><strong>Mittens peeks</strong>&nbsp;"<strong>Combat </strong>(Goblin King)".</p>
+<p><strong>Mitten interrupts event</strong> (Item -&gt; Potion).</p>
+<p>Mittens gains 10 HP.</p>
+<p><strong>Mittens the mighty pops</strong>&nbsp;"<strong>Combat </strong>(Goblin King)". Combat begins</p>
+<p><strong>Mittens</strong> <strong>queues</strong>: "<em>Attack, Attack</em>". Goblin King <strong>queues</strong>: "<em>Debuff, Attack</em>".</p>
+<p><strong>Combat queue resolves</strong>, log reads: "<em>Mittens attacks! Goblin King takes 1 damage</em>", "<em>Mittens attacks! Goblin King takes 1 damage</em>", "<em>Goblin King applies a Debuff, Mittens will take double damage",</em>&nbsp;"<em>Goblin Attacked, Mittens takes 30 damage</em>".</p>
+<p><strong>Mittens HP reaches 0</strong>, Combat ends.</p>
+<p>&nbsp;</p>
+<p><strong>Mittens the mighty is defeated</strong> with a Score of 2.</p>
+<p>A Score of 2 is submitted to the leader board. Mittens ranks 10th.</p>
+</div>
+
+</div>
+</div>
+<p>&nbsp;</p>
+<h3>Core requirements</h3>
+<p>&nbsp;</p>
+<p><strong><em>Phase 3 – Traversal rules, Combat Logic, GameEvent interrupts, the Leaderboard</em></strong></p>
+<p><strong>Subsystems:</strong>&nbsp;</p>
+<ul>
+<li>Travel checks &amp; Player movement</li>
+</ul>
+<ul>
+<li>Combat logic &amp; round based combat</li>
+<li>Event logic and player interrupts</li>
+</ul>
+<ul>
+<li>Leaderboards &amp; score tracking</li>
+</ul>
+<p><strong>Implement:</strong>&nbsp;</p>
+<p><strong>1. Travel rules + GameEvent Interrupts</strong></p>
+<ul>
+<li>Implement <code>CanMove()</code>, <code>AddRequirement()</code></li>
+<li>Update <code>MovePlayer()</code> method to enforce <code>CanMove()</code></li>
+<li>Implement <code>PeekEvent()</code> and Interrupt()</li>
+<li>Player is limited to 1 <code>Interrupt()</code> per Zone</li>
+<li>At a minimum, implement an Interrupt GameEvent for using an Item.</li>
+</ul>
+<p><strong>3. Leaderboard (SortedSet&lt;Player&gt;):</strong>&nbsp;</p>
+<ul>
+<li>Track and update player score</li>
+<li>Insert score</li>
+</ul>
+<ul>
+<li>Maintain Top 10 (persistent, across relaunches, save the file somewhere)</li>
+</ul>
+<ul>
+<li>Print rankings</li>
+</ul>
+<p><strong>4. Combat integration</strong></p>
+<ul>
+<li>Combat logic fully implemented and integrated.</li>
+<li>Combat continues until a GameEntity wins or loses.</li>
+<li>Handling for Player or Enemy Fleeing.</li>
+<li>Transition to Scoring and Leadboard logic if Player loses.</li>
+<li>Combat log kept.&nbsp;</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong><em>Phase 4 – Performance and Scaling</em></strong></p>
+<p><strong>Focus:</strong> measurement, scalability, comparison.</p>
+<p><strong>Subsystems:</strong> All from Phases 1–3.</p>
+<p>You can use Program.cs to run the performance tests, or create a seperate .cs file in your testing project, it doesn't matter. Ensure the performance tests output their results to the console when run.</p>
+<p><strong>Implement:</strong>&nbsp;</p>
+<p><strong>1. Performance tests using Stopwatch:&nbsp;</strong></p>
+<ul>
+<li>Zone manager that creates and adds 10, 100, 1_000, 10_000, 50_000 Zones. For each Zone added, make sure you add it into the <strong>middle</strong> of the Zone list.</li>
+<li>Loot GameEvent followed by UseItem GameEvent that spawns and uses 10, 100, 1_000, 10_000, 50_000 items.</li>
+<li>First battle an enemy that deals no damage but has: 10_000, 100_000, 1_000_000, 10_000_000, 100_000_000 HP to produce a large combat log (this bit is a pre-req, not part of the analysis). Test searching the combat log for which turn the enemy was reduced to below 5_000 HP.</li>
+</ul>
+<p><strong>2. Memory measurements using GC&nbsp;</strong>of the above tests.</p>
+<p><strong>3. Plot time and memory results</strong> of the above tests. (I recommend ScottPlott, but you may either create the plot via code or export the data as CSV or similiar and graph it with some third party tool.)</p>
+<p><strong>4. Discuss theoretical (Big-O complexity) complexity of the above tests and compare them to your actual results. Do they match? Reflect on why or why not.</strong></p>
+<p><strong>5. Discuss potential replacement of two different types of data structures.</strong> What would your swaps be? Why? How would this impact execution time and memory performance? e.g. swapping Zone LinkedList with a Graph data structure.</p>
+<p><strong>6. Discuss test coverage.</strong> What % test coverage did you get (include screenshot)? What prevented you from getting a higher %? (There are plenty of legit reasons)</p>
+<p><strong>7.</strong>&nbsp;<strong>AI generate some code (only part where this is permitted)</strong>:</p>
+<ul>
+<li>Use AI tools to recreate at least one of your previous classes from Phases 1 - 3.</li>
+<li>Document and discuss which model you used, as well as what your prompt was, as well as the output (if you're using a more advanced agent test harness, describe the process in as much detail as you can). Include screenshots.</li>
+<li>Include the AI generated code in an <em>Attachments</em> folder (you might have to change the folder location or .cs extension to something else to avoid it trying to compile with your project).</li>
+</ul>
+<ul>
+<li>Compare its correctness, clarity, and efficiency to your own.</li>
+</ul>
+<p>&nbsp;</p>
+<h3>Functional Requirements (Phase 3)</h3>
+<p>This list of function requirements are functions you must include in your code. The list isn't comprehensive, but should give you a good overview of what's required. Phase 3 includes many functional requirements from Phases 1 &amp; 2 that have been updated with a new description to reflect their additional requirements. Same principles as Part A apply, where you may deviate slightly from these function signatures, provided you have justification in your Reflection notes.&nbsp;</p>
+<div class="dp-table-scroll">
+<table style="border-collapse: collapse; width: 100%; height: 981.234px;" border="1">
+<tbody>
+<tr style="height: 28.8px;">
+<td style="width: 39.4863%; text-align: center; height: 28.8px;"><strong>Function</strong></td>
+<td style="width: 60.5031%; text-align: center; height: 28.8px;"><strong>Description</strong></td>
+</tr>
+<tr style="height: 112.8px;">
+<td style="width: 39.4863%; height: 112.8px;" width="204">
+<p>&nbsp;</p>
+<p>ZoneManager.AddRequirement(Zone zone, List&lt;GameEvent&gt; requiredEvents, List&lt;Item&gt; requiredItems) → void</p>
+<p>&nbsp;</p>
+</td>
+<td style="width: 60.5031%; height: 112.8px;" width="187">
+<p>Add a requirement to travel to the given Zone. One List might be empty (e.g. if only an Item is required). At least one List much be non-empty. Input is the list of required GameEvents and Items. <em>You'll need to think about how you are going to track whether a player has cleared a GameEvent</em></p>
+</td>
+</tr>
+<tr style="height: 94.6167px;">
+<td style="width: 39.4863%; height: 94.6167px;">
+<p>Player.CanMove(ZoneManager zm, string toZone, List&lt;GameEvent&gt; playerEvents, List&lt;Item&gt; playerItems) → bool Allowed</p>
+</td>
+<td style="width: 60.5031%; height: 94.6167px;" width="187">
+<p>Use the ZoneManager to check the requirements and adjacency of the toZone and return whether the Player is permitted to move. Input is the Players list of cleared GameEvents and inventory Items.</p>
+</td>
+</tr>
+<tr style="height: 94.8px;">
+<td style="width: 39.4863%; height: 94.8px;">
+<p>Player.MovePlayer(ZoneManager zm, string toZone, List&lt;GameEvent&gt; playerEvents, List&lt;Item&gt; playerItems) &nbsp;→ bool Success</p>
+</td>
+<td style="width: 60.5031%; height: 94.8px;" width="187">
+<p>Check the value of<strong> </strong>Player.CanMove()<strong> </strong>to validate travel rules, then move the Player.</p>
+</td>
+</tr>
+<tr style="height: 94.8px;">
+<td style="width: 39.4863%; height: 94.8px;" width="204">
+<p>Player.Interrupt(ZoneManager zm, Item item) → bool Success</p>
+</td>
+<td style="width: 60.5031%; height: 94.8px;" width="187">
+<p>Player may interrupt the currently pending event to use an Item. For example, using a potion before a combat event. Player should be limited to 1 Interrupt per Zone. Method returns false if invalid Item is passed in, or Player has already used their Interrupt.</p>
+</td>
+</tr>
+<tr style="height: 118.617px;">
+<td style="width: 39.4863%; height: 118.617px;" width="204">
+<p>Player.AddScore(int amount) → int CurrentScore</p>
+</td>
+<td style="width: 60.5031%; height: 118.617px;" width="187">
+<p>Add score to Player's total.</p>
+</td>
+</tr>
+<tr style="height: 70.8px;">
+<td style="width: 39.4863%; height: 70.8px;">
+<p>LeaderBoard.AddScore(Player player, int score) → void</p>
+</td>
+<td style="width: 60.5031%; height: 70.8px;">
+<p>Use a <strong>SortedSet&lt;Player&gt;</strong> to maintain a Leader-board of Player scores. The Leader-board should be persistent between sessions.</p>
+</td>
+</tr>
+<tr style="height: 46.8px;">
+<td style="width: 39.4863%; height: 46.8px;">
+<p>LeaderBoard.Initialise() → void</p>
+</td>
+<td style="width: 60.5031%; height: 46.8px;">
+<p>Clear and/or Initialise the Leader-board with some default or dummy scores.</p>
+</td>
+</tr>
+<tr>
+<td style="width: 39.4863%;">
+<p>GameManager.SaveRankings(string filePath) → bool Success</p>
+</td>
+<td style="width: 60.5031%;">
+<p>Serialises the current LeaderBoard as JSON and saves it to the filesystem.</p>
+</td>
+</tr>
+<tr>
+<td style="width: 39.4863%;">
+<p>GameManager.LoadRankings(string filePath) → LeaderBoard obj</p>
+</td>
+<td style="width: 60.5031%;">
+<p>Reads the JSON file from the filesystem and deserialises it into a LeaderBoard object.</p>
+</td>
+</tr>
+<tr style="height: 100.8px;">
+<td style="width: 39.4863%; height: 100.8px;">
+<p>GameManager.RegisterScore(Player player) → bool madeTheCut</p>
+</td>
+<td style="width: 60.5031%; height: 100.8px;">
+<p>Register the Player's current score to the Leaderboard. After registering, returns a boolean if the Player made the Top 10 Leader-board.</p>
+</td>
+</tr>
+<tr>
+<td style="width: 39.4863%;">
+<p>GameManager.PrintTopTen() → string Result</p>
+</td>
+<td style="width: 60.5031%;">
+<p>Pretty print the current top 10 Rankings.</p>
+</td>
+</tr>
+<tr style="height: 118.8px;">
+<td style="width: 39.4863%; height: 118.8px;">
+<p>CombatManager.BeginCombat(GameEntity obj1, GameEntity obj2) → GameEvent? Result</p>
+</td>
+<td style="width: 60.5031%; height: 118.8px;">
+<p>Begin a complete combat between two GameEntities. Continue combat until a Defeat or Flee GameEvent is received from one of the GameEntities. You'll have to think about how each round will permit the GameEntity to submit their moves for the turn, and how to handle intermediate states.</p>
+</td>
+</tr>
+<tr>
+<td style="width: 39.4863%;">
+<p>CombatManager.GetLog() → string Result&nbsp;</p>
+</td>
+<td style="width: 60.5031%;">
+<p>Returns the full log for the current combat encounter as a string (with formatting).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&nbsp;</p>
+<h3>Functional Requirements (Phase 4)</h3>
+<p>Phase 4 has only 1 additional functional requirement. Most of the work this phase is for the analysis / reflection.&nbsp;</p>
+<div class="dp-table-scroll">
+<table style="border-collapse: collapse; width: 100%; height: 117.15px;" border="1">
+<tbody>
+<tr style="height: 28.8px;">
+<td style="width: 39.3997%; text-align: center; height: 28.8px;"><strong>Function</strong></td>
+<td style="width: 60.5821%; text-align: center; height: 28.8px;"><strong>Description</strong></td>
+</tr>
+<tr style="height: 88.35px;">
+<td style="width: 39.3997%; height: 88.35px;" width="204">
+<p>TestGame()</p>
+</td>
+<td style="width: 60.5821%; height: 88.35px;" width="187">
+<p>Play a complete sample game&nbsp;via the xUnit test harness. You must utilise all data structures and functional requirement methods from Phases 1-3.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Before uploading, check:</strong></p>
+<ul>
+<li>All relevant .cs files, including all xUnit test files, are included in your repo &amp; zip.</li>
+<li><strong>Your assignment runs on the Uni PC's. </strong>If your assignment doesn't run properly on the tutors PC, they'll bring it to the classroom you do your pracs in and execute <strong>dotnet build</strong>, <strong>dotnet run,</strong>&nbsp;and <strong>dotnet test</strong>. Assignments that do not compile will receive 0 marks. Assignments with runtime errors will attract penalties (check the rubric).</li>
+<li>You have addressed all Functional Requirements from all phases.</li>
+<li>You have at least one test that demonstrates a complete game, and which utilises all the classes and functional requirements in the spec.</li>
+<li>Reflections are complete for Phase 4 and included in relevant Screenshot / Reflection / Attachments folders.</li>
+<li>xUnit tests exist for all classes, with test coverage as high as is feasible.</li>
+<li>Appropriate exceptions are thrown and error handling is present</li>
+<li>Plots have been created to show observed growth rates in Phase 4.</li>
+</ul>
+<p>Then zip your Git repo up and upload it to the course website by the due date.</p>
+<p>&nbsp;</p>
+<h3>Assignment Submission</h3>
+<p>Submit final assignment zip to the submission area.</p>
+<p>Make sure you include your Git history folder (Mac may exclude hidden folders by default)</p>
+<div class="dp-content-block">
+<h3>Other information and resources</h3>
+<h4>Advice and resources</h4>
+<p>Start straight after the teaching break. Commit often. Work on the assignment step and don't race ahead. If you start early you will be able to get assistance from tutors in class.</p>
+<h4>Academic integrity and use of Generative AI</h4>
+<p>No Generative AI is permitted in this assessment except the section where specifically requested.</p>
+<h4>Feedback</h4>
+<p>Students will receive feedback on return of assignment.</p>
+</div>
+</div></div>
