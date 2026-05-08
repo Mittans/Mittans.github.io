@@ -1,0 +1,160 @@
+---
+layout: template
+---
+<div class="show-content user_content clearfix enhanced dp-wrapper-parent" data-resource-type="wiki_page.body" data-resource-id="1170290" data-lti-page-content="true">
+    <h1 class="page-title">Topic 7: Prac A</h1>
+  <div id="todo-date-mount-point"></div>
+    <div id="dp-wrapper" class="dp-wrapper">
+<div class="dp-content-block content-block">
+<p><span>This page outlines the key tasks for this week's <strong>Workshop 1</strong>.&nbsp;</span></p>
+<h3>Workshop tasks</h3>
+<h4>Task 1: <span>Using <code>SortedSet</code> with Integers </span>(2<em>5&nbsp;m</em>)</h4>
+<p>Create a simple leaderboard for a game using <code>SortedSet&lt;int&gt;</code>.</p>
+<p>Syntax for SortedSet is very similiar to Lists or Dictionaries you've used before, despite relying on totally different data structures underneath the hood.</p>
+<p>Write a new function <code>void DisplayScores(SortedSet&lt;int&gt; scores)</code>&nbsp;that:</p>
+<ul style="list-style-type: disc;">
+<li>Prints all scores to the console</li>
+<li>Prints the highest and lowest score</li>
+</ul>
+<p>Next, populate a SortedSet&lt;int&gt; and perform the following tests in order to answer the reflection questions about the behaviour of SortedSet:</p>
+<ol>
+<li>Add at least 10 random scores to your <code>SortedSet&lt;int&gt;</code> and call <code>DisplayScores()</code></li>
+<li>Add a new high or low score and re-run <code>DisplayScores()</code></li>
+<li>Add a duplicate score and re-run <code>DisplayScores()</code></li>
+</ol>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li>Screenshot of console showing score output.</li>
+</ul>
+</div>
+</div>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary cp-out-primary dp-border-dir-all dp-callout-type-info dp-action-box dp-action">
+<div class="dp-callout-side-emphasis"><i class="dp-icon far fa-hand-pointer dp-default-icon">​</i></div>
+<div class="card-body">
+<h3 class="card-title">Reflection Questions</h3>
+<ul style="list-style-type: disc;">
+<li class="card-text dp-border-dir-none">Did you need to run <code>.Sort()</code> or similiar on your <code>SortedSet</code> to maintain its ordering? Why or why not?</li>
+<li class="card-text dp-border-dir-none">What is the underlying data structure used by <code>SortedSet</code>? How did you find out?</li>
+<li>What happened when you tried to add the duplicate score to the set? Why does <code>SortedSet</code> behave this way?</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;</p>
+<h4>Task 2: <span>Using <code>SortedSet</code> with a BankAccount </span>(40<em> m</em>)</h4>
+<p><code>SortedSets</code> aren't just limited to primitive types like ints. Everything that you can write a sorter for can be a SortedSet!</p>
+<p>(If you don't have a copy of the <code>BankAccount.cs</code> class, grab this one) Now, let's go sorting BankAccounts.</p>
+<div class="dp-panels-wrapper dp-accordion-default">
+
+<h3 class="dp-panel-heading dp-panels-built" id="dpPanel0"><a href="#dpPanel0" role="button" class="dp-panel-toggler " aria-controls="dpPanel0Content" aria-expanded="false"><i class="dp-panel-icon fas fa-caret-up" aria-hidden="true"></i> <span>BankAccount.cs</span></a></h3>
+<div class="dp-panel-content" tabindex="0" id="dpPanel0Content" style="display: none;" aria-labelledby="dpPanel0" role="region">
+<div>
+<div>
+<div>
+<pre>public class BankAccount(string owner, decimal balance)<br>{<br>&nbsp; public string Owner { get; set; } = owner;<br>&nbsp; public decimal Balance { get; set; } = balance;<br><br>&nbsp; public decimal Deposit(decimal amount)<br>&nbsp; {<br>&nbsp; &nbsp; if (amount &lt; 0)<br>&nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; throw new ArgumentException("Amount must not be negative.");<br>&nbsp; &nbsp; }<br>&nbsp; &nbsp; return Balance += amount;<br>&nbsp; }<br><br>&nbsp; public decimal Deposit(int amount)<br>&nbsp; {<br>&nbsp; &nbsp; return Deposit((decimal)amount);<br>&nbsp; }<br><br>&nbsp; public decimal Deposit(double amount)<br>&nbsp; {<br>&nbsp; &nbsp; return Deposit((decimal)amount);<br>&nbsp; }<br><br>&nbsp; public virtual decimal Withdraw(decimal amount)<br>&nbsp; {<br>&nbsp; &nbsp; if (amount &lt; 0)<br>&nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; throw new ArgumentException("Amount must not be negative.");<br>&nbsp; &nbsp; }<br>&nbsp; &nbsp; if (Balance &lt; amount)<br>&nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; throw new ArgumentException("Balance is less than amount");<br>&nbsp; &nbsp; }<br>&nbsp; &nbsp; return Balance -= amount;<br>&nbsp; }<br><br>&nbsp; public override string ToString()<br>&nbsp; {<br>&nbsp; &nbsp; string info = $"""<br>&nbsp; &nbsp; &nbsp; Account: {nameof(BankAccount)}<br>&nbsp; &nbsp; &nbsp; Owner: {Owner}<br>&nbsp; &nbsp; &nbsp; Balance: {Balance:F2}<br>&nbsp; &nbsp; &nbsp; """;<br>&nbsp; &nbsp; return info;<br>&nbsp; }<br>}</pre>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<ol>
+<li>Make at least 10 random BankAccount objects (or copy them from a previous prac).</li>
+<li>Try to initialise a <code>SortedSet&lt;BankAccount&gt;</code>. Your code should compile, but we're going to get a runtime error.</li>
+</ol>
+<p>&nbsp;Should look something like: <code>Unhandled exception. System.ArgumentException: At least one object must implement IComparable.</code></p>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li>Screenshot of console showing the runtime error.</li>
+</ul>
+</div>
+</div>
+<p>Alright, let's fix this by implementing our own <code>IComparable</code> interface for <code>BankAccount</code>.</p>
+<p>Make a new class called <code>BankComparer</code>. Hopefully you'll remember from a previous topic on inheritance, that we can define a class that implements an interface using this syntax:</p>
+<div style="color: #d4d4d4; background-color: #1e1e1e; font-family: 'Droid Sans Mono', monospace; font-size: 14px; line-height: 19px; white-space: pre;">
+<div><span style="color: #569cd6;">public</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> BankComparer : IComparer&lt;BankAccount&gt;</span></div>
+</div>
+<p>Implementing an interface means we need to write some specific functions. For <code>IComparer</code>, it's easy, we only need a single function: <code>public int Compare(BankAccount x, BankAccount y)</code>.</p>
+<p>If you're confused as to why it returns an int, it's because these Interfaces have been around since .NET 1.0 and we still need to work with this ancient spec. (C# in general is a language with a lot of historical baggage).</p>
+<p>You take in an <code>x</code> and <code>y</code> BankAccount, and return an int that represents the order of these BankAccounts. The VS Code Intellisense gives you a good rundown:</p>
+<p><img src="https://learn.adelaide.edu.au/courses/30652/files/5124837/preview" alt="image.png" width="691" height="164" data-api-endpoint="https://learn.adelaide.edu.au/api/v1/courses/30652/files/5124837" data-api-returntype="File" loading="lazy" data-width="691"></p>
+<p>&nbsp;</p>
+<p>Now that we're ready to go, let's write that interface!</p>
+<p>It should be easy to compare BankAccounts based on their <code>Balance</code> or their <code>Owner</code>&nbsp; because both of those types already implement their own <code>Compare()</code> method. Think about what you want to do if <code>x.Balance == y.Balance</code>, though. If you&nbsp; <code>return 0</code>, meaning the objects are equal, <code>SortedSet</code> will eat the duplicate. Maybe check <code>string.Compare(x.Owner, y.Owner)</code> too?</p>
+<p>Once you've written your <code>BankComparer</code> class, you should be able to create a new <code>SortedSet&lt;BankAccount&gt;</code> with the syntax:</p>
+<div style="color: #d4d4d4; background-color: #1e1e1e; font-family: 'Droid Sans Mono', monospace; font-size: 14px; line-height: 19px; white-space: pre;">
+<div><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> sortedBankSet </span><span style="color: #d4d4d4;">=</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;">new</span><span style="color: #d4d4d4;"> SortedSet&lt;BankAccount&gt;(</span><span style="color: #569cd6;">new</span><span style="color: #d4d4d4;"> BankComparer())</span></div>
+</div>
+<p>(Note: we provide our custom comparer as part of the <code>SortedSet&lt;BankAccount&gt;</code> constructor)</p>
+<p>Then, perform the following tasks:</p>
+<ol>
+<li>Write a <code>DisplayAccounts()</code>that prints the <code>SortedSet&lt;BankAccount&gt;</code> info to the console.</li>
+<li>Add 10 of your BankAccount objects to your <code>SortedSet&lt;BankAccount&gt;</code> and call <code>DisplayAccounts()</code></li>
+<li>Add a new high or low BankAccount and re-run <code>DisplayAccounts()</code></li>
+<li>Add a duplicate BankAccount and re-run <code>DisplayAccounts()</code>&nbsp;</li>
+</ol>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li>Screenshot of your <code>BankComparer : IComparer&lt;BankAccount&gt;</code> class.</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;(Optional): If you have time, you can also implement the comparer directly in the BankAccount class. In this case, your BankAccount should implement <code>IComparable&lt;BankAccount&gt;</code> (<em>not</em> <code>IComparer</code>). And the function you need to write is <code>public int CompareTo(BankAccount? other)</code>. If you do it like this, you don't even need to pass in a custom comparer in your SortedSet, C# can figure it out. Amazing, huh?</p>
+<p>&nbsp;</p>
+<h4>Task 3: Plotting data with ScottPlot (40<em> m</em>)</h4>
+<p>One thing I want to do alongside our foray into data structures, is include some basic practical tasks that every developer should have some experience with.</p>
+<p>One of these is visualising your data. Whether you want to prepare a report for the boss, or have a figure to prove your point in an academic paper, graphing your data is super helpful to translate some complex data structures into something that's easy to digest.</p>
+<p>And while this is probably most common in datasciency languages like Python, there's no reason you can't make a nice graph using C#.</p>
+<p>To do this we'll use ScottPlot: <a href="https://scottplot.net/quickstart/console/" target="_blank" class="external" rel="noreferrer noopener"><span>https://scottplot.net/quickstart/console/</span><span class="external_link_icon" style="margin-inline-start: 5px; display: inline-block; text-indent: initial; " role="presentation"><svg viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" style="width:1em; height:1em; vertical-align:middle; fill:currentColor">
+    <path d="M1226.667 267c88.213 0 160 71.787 160 160v426.667H1280v-160H106.667v800C106.667 1523 130.56 1547 160 1547h1066.667c29.44 0 53.333-24 53.333-53.333v-213.334h106.667v213.334c0 88.213-71.787 160-160 160H160c-88.213 0-160-71.787-160-160V427c0-88.213 71.787-160 160-160Zm357.706 442.293 320 320c20.8 20.8 20.8 54.614 0 75.414l-320 320-75.413-75.414 228.907-228.906H906.613V1013.72h831.254L1508.96 784.707l75.413-75.414Zm-357.706-335.626H160c-29.44 0-53.333 24-53.333 53.333v160H1280V427c0-29.333-23.893-53.333-53.333-53.333Z" fill-rule="evenodd"></path>
+</svg>
+<span class="screenreader-only">Links to an external site.</span></span></a></p>
+<p>First, install the package using the VS Code terminal (make sure you're in the folder with your Topic 7A .csproj file):&nbsp;</p>
+<p><img src="https://learn.adelaide.edu.au/courses/30652/files/5124896/preview" alt="image.png" width="702" height="151" data-api-endpoint="https://learn.adelaide.edu.au/api/v1/courses/30652/files/5124896" data-api-returntype="File" loading="lazy" data-width="702"></p>
+<p>Syntax is pretty simple, we make a new ScottPlot object, and provide the data for the axiis. For a Bar chart, all we need is data for the Y values.</p>
+<div class="highlight">
+<pre style="background-color: #fff;" class="language-cs" tabindex="0"><code class="language-cs" data-lang="cs"><span class="token class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> dataY <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token class-name">ScottPlot<span class="token punctuation">.</span>Plot</span> myPlot <span class="token operator">=</span> <span class="token keyword">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myPlot<span class="token punctuation">.</span>Add<span class="token punctuation">.</span><span class="token function">Bars</span><span class="token punctuation">(</span>dataY<span class="token punctuation">)</span><span class="token punctuation">;</span>myPlot<span class="token punctuation">.</span><span class="token function">SavePng</span><span class="token punctuation">(</span><span class="token string">"quickstart.png"</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</div>
+<p>Make sure you can find your <code>quickstart.png</code> and it looks ok before moving on.</p>
+<p>We can also edit the graph by setting the properties, so to change the X-axis label, we can do: <code>myPlot.XLabel("Ranking")</code></p>
+<p>For the next few steps, you might want to have the ScottPlot cookbook on Bar plots handy: <a href="https://scottplot.net/cookbook/5/Bar/" target="_blank" class="external" rel="noreferrer noopener"><span>https://scottplot.net/cookbook/5/Bar/</span><span class="external_link_icon" style="margin-inline-start: 5px; display: inline-block; text-indent: initial; " role="presentation"><svg viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" style="width:1em; height:1em; vertical-align:middle; fill:currentColor">
+    <path d="M1226.667 267c88.213 0 160 71.787 160 160v426.667H1280v-160H106.667v800C106.667 1523 130.56 1547 160 1547h1066.667c29.44 0 53.333-24 53.333-53.333v-213.334h106.667v213.334c0 88.213-71.787 160-160 160H160c-88.213 0-160-71.787-160-160V427c0-88.213 71.787-160 160-160Zm357.706 442.293 320 320c20.8 20.8 20.8 54.614 0 75.414l-320 320-75.413-75.414 228.907-228.906H906.613V1013.72h831.254L1508.96 784.707l75.413-75.414Zm-357.706-335.626H160c-29.44 0-53.333 24-53.333 53.333v160H1280V427c0-29.333-23.893-53.333-53.333-53.333Z" fill-rule="evenodd"></path>
+</svg>
+<span class="screenreader-only">Links to an external site.</span></span></a></p>
+<p>Perform the following tasks:</p>
+<ol>
+<li>Change the output name to <code>Topic7A-Task3.png</code> and the output resolution to <code>800x600</code>.</li>
+<li>Add a YAxis label "Account Balance"</li>
+<li>Add an XAxis label "Ranking"</li>
+<li>Change the Label's FontSize to 20.</li>
+<li>Set your Axes margins to be: <code>bottom: 0, top: .2</code></li>
+<li>Set your data source to be your <code>SortedSet&lt;BankAccount&gt;</code> Balances.</li>
+<li>Run your code and check the graph</li>
+</ol>
+<p>Note that <code>myPlot.Add.Bars()</code> needs to take in an <em>Array of Doubles</em>. You might want to iterate through your <code>SortedSet&lt;BankAccount&gt;</code> and save them to a <code>double[]</code> variable to pass them into ScottPlot. Or you can use a LINQ Select if you want to get C# maxxed.</p>
+<p>(Optional): If you have time, add the Owner's name as a label for each of the Balances</p>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-type-default dp-callout-color-dp-primary">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li>Your Topic7A-Task3.png graph</li>
+</ul>
+</div>
+</div>
+<p>Graph should look something like this:</p>
+<p><img src="https://learn.adelaide.edu.au/courses/30652/files/5125031/preview" alt="image.png" width="228" height="171" data-api-endpoint="https://learn.adelaide.edu.au/api/v1/courses/30652/files/5125031" data-api-returntype="File" loading="lazy" data-width="228"></p>
+</div>
+</div>
+  
+  
+<div id="assign-to-mount-point"></div>
+<div id="choose-editor-mount-point"></div>
+</div>
