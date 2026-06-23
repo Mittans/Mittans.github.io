@@ -1,0 +1,133 @@
+---
+layout: template
+---
+<div class="show-content user_content clearfix enhanced dp-wrapper-parent" data-resource-type="wiki_page.body" data-resource-id="1161489" data-lti-page-content="true">
+  
+    <h1 class="page-title">Topic 4: Prac A</h1>
+  
+  <div id="todo-date-mount-point"></div>
+  
+    <div id="dp-wrapper" class="dp-wrapper">
+<div class="dp-content-block content-block">
+<p>&nbsp;</p>
+<h3>Workshop tasks</h3>
+<h4>Task 1: Debugging a Broken Program (<em>45 m</em>)</h4>
+<p>In this weeks prac, you are given a solution to a small programming challenge that contains a few logic errors.</p>
+<p>Before you start, make sure your portfolio is structured correctly! Still have many students trying to put their e.g. Topic3B.Test folder inside their Topic3B folder.</p>
+<p>This can cause a circular dependency, and you'll get errors in VS Code.</p>
+<div class="dp-panels-wrapper dp-accordion-default">
+
+<h3 class="dp-panel-heading dp-panels-built" id="dpPanel0"><a href="#dpPanel0" role="button" class="dp-panel-toggler ," aria-controls="dpPanel0Content" aria-expanded="false"><i class="dp-panel-icon fas fa-caret-up" aria-hidden="true"></i> <span>Example Portfolio directory</span></a></h3>
+<div class="dp-panel-content" tabindex="0" id="dpPanel0Content" style="display: none;" aria-labelledby="dpPanel0" role="region">
+<ul>
+<li><span><img src="https://learn.adelaide.edu.au/courses/30652/files/4401487/preview" alt="image.png" width="289" height="290" data-api-endpoint="https://learn.adelaide.edu.au/api/v1/courses/30652/files/4401487" data-api-returntype="File" loading="lazy" data-width="289"></span></li>
+<li>Notice that:</li>
+<li>All tasks are inside a Topic folder</li>
+<li>Topic folders are split up neatly into Topic1A, Topic1B, Topic1B.Test, etc.</li>
+<li><strong>Test folders are not inside the main Topic folder</strong></li>
+<li>Naming scheme is consistent</li>
+<li>bin and obj folders are ignored by your .gitignore so they're not pushed to github</li>
+<li>Reflection and Screenshots have their own folders inside the Topics</li>
+<li>Notes are in a markdown (.md) or text (.txt) file. If you put them in a docx or similiar we can't preview them on Github</li>
+<li>Screenshots labled based on which task has been captured</li>
+<li>You don't need to follow this *exact* structure, but your code needs to be easily navigable for tutors to check and assess. If you have a random 123243543.png, I don't know what task that relates to. If you have a random BankAccount folder in Portfolio, I'm not going to remember that BankAccount =&gt; Topic 2 &amp; 3 by the end of the semester.</li>
+</ul>
+</div>
+
+</div>
+<p>First, create a new C# console project for this practical (delete any "hello world" generated stuff) and add paste the <code>BrokenProgram.cs</code> class below into it. Then read through the code.</p>
+<p>Link: <span class="instructure_file_holder link_holder instructure_file_link_holder"><a class="inline_disabled preview_in_overlay" title="BrokenProgram.cs" href="https://learn.adelaide.edu.au/courses/30652/files/4490810?wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="https://learn.adelaide.edu.au/api/v1/courses/30652/files/4490810" data-api-returntype="File" rel="noopener">BrokenProgram.cs</a><a class="file_download_btn" role="button" download="" style="margin-inline-start: 5px; text-decoration: none;" href="https://learn.adelaide.edu.au/courses/30652/files/4490810/download?download_frd=1"><span role="presentation"><svg name="IconDownload" viewBox="0 0 1920 1920" rotate="0" data-cid="InlineSVG SVGIcon" style="width:1em; height:1em; vertical-align:middle; fill:currentColor" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="css-1uh2md0-inlineSVG-svgIcon"><g role="presentation"><path d="m1807.093 1482.477 79.736 79.963-355.313 355.312H355.346L.035 1562.44l79.85-79.963 322.22 322.334H1484.76l322.334-322.334ZM997.677-.033v1167.02l355.313-355.313 79.962 79.85-491.858 491.633L449.46 891.524l79.962-79.85 355.313 355.313V-.033h112.941Z" fill-rule="evenodd"></path></g></svg></span><span class="screenreader-only">Download BrokenProgram.cs</span></a></span></p>
+<div class="dp-panels-wrapper dp-accordion-default">
+
+<h3 class="dp-panel-heading dp-panels-built" id="dpPanel1"><a href="#dpPanel1" role="button" class="dp-panel-toggler ," aria-controls="dpPanel1Content" aria-expanded="false"><i class="dp-panel-icon fas fa-caret-up" aria-hidden="true"></i> <span>BrokenProgram.cs</span></a></h3>
+<div class="dp-panel-content" tabindex="0" id="dpPanel1Content" style="display: none;" aria-labelledby="dpPanel1" role="region">
+<p>public static class BrokenProgram<br>{<br>&nbsp; static void Main(string[] args)<br>&nbsp; {<br>&nbsp; &nbsp; const string input = """<br>&nbsp; &nbsp; &nbsp; &nbsp;23<br>&nbsp; &nbsp; &nbsp; &nbsp;+&nbsp;<br>&nbsp; &nbsp; &nbsp; &nbsp;77<br>&nbsp; &nbsp; &nbsp; &nbsp;+&nbsp;<br>&nbsp; &nbsp; &nbsp; &nbsp; 3<br>&nbsp; &nbsp; &nbsp; &nbsp;+&nbsp;<br>&nbsp; &nbsp; &nbsp; 457<br>&nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;<br>&nbsp; &nbsp; &nbsp; &nbsp; 2<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>&nbsp; &nbsp; &nbsp; """;<br>&nbsp; &nbsp; int total = 0;<br>&nbsp; &nbsp; List&lt;int&gt; items = [];<br>&nbsp; &nbsp; List&lt;string&gt; symbols = [];</p>
+<p>&nbsp; &nbsp; for (int i = 0; i &lt; input.Split("\n").Length; i += 2)<br>&nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; items.Add(int.Parse(input.Substring((i * 4) + 1, 3)));</p>
+<p>&nbsp; &nbsp; &nbsp; if (i != 0)<br>&nbsp; &nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; &nbsp; symbols.Add(input.Split("\n")[i - 1]);<br>&nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; foreach (var (i, value) in items.Index())<br>&nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; if (i == 0) { total = value; }<br>&nbsp; &nbsp; &nbsp; else if (symbols[i - 1] == "*")<br>&nbsp; &nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; &nbsp; total *= value;<br>&nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; &nbsp; else<br>&nbsp; &nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; &nbsp; total += value;<br>&nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; }<br>&nbsp; &nbsp; Console.WriteLine("Total was: " + total);<br>&nbsp; &nbsp; Console.WriteLine("Expected total was: 1120");<br>&nbsp; &nbsp; Console.WriteLine(total == 1120 ? "Your answer was RIGHT!" : "Your answer was WRONG!\nGo and fix it.");<br>&nbsp; }<br>}</p>
+</div>
+
+</div>
+<p>Given the <code>input</code>, your program should keep a Total and update it based on the numbers and symbol encountered.</p>
+<p>For the above <code>input</code> the <code>total</code> should start at 23. Then a "+" symbol is encountered, so the next number, 77 should be added to the <code>total</code>.</p>
+<p>The same is true for 3 and 457, leading to a <code>total</code> of 560.</p>
+<p>After this, the "*" symbol is encountered, and so the <code>total</code> should be doubled to 1120. However, your program isn't returning the right value.</p>
+<p>&nbsp;</p>
+<p>Use the C# debugging tools to analyse the behaviour of the program, and find and fix the errors.</p>
+<p>Ensure you use Breakpoints and the Locals / Watch window to find to help you step through and understand the code.</p>
+<p>You may want to create intermediate or temporary variables to assist your understanding of the program, but don't touch the <code>input</code> variable.</p>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary dp-callout-type-default">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li>Fixed code commited to git</li>
+<li>Screenshot of a debug session in progress, showing breakpoints, the current line being debugged and variables populated in the Locals / Watch tab.</li>
+<li>Go to <a href="https://www.diffchecker.com/" target="_blank" rel="noreferrer noopener" class="external"><span>https://www.diffchecker.com/</span><span class="external_link_icon" style="margin-inline-start: 5px; display: inline-block; text-indent: initial; " role="presentation"><svg name="IconExternalLink" viewBox="0 0 1920 1920" rotate="0" data-cid="InlineSVG SVGIcon" style="width:1em; height:1em; vertical-align:middle; fill:currentColor" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="css-1xnn9jb-inlineSVG-svgIcon"><g role="presentation"><path d="M1226.667 267c88.213 0 160 71.787 160 160v426.667H1280v-160H106.667v800C106.667 1523 130.56 1547 160 1547h1066.667c29.44 0 53.333-24 53.333-53.333v-213.334h106.667v213.334c0 88.213-71.787 160-160 160H160c-88.213 0-160-71.787-160-160V427c0-88.213 71.787-160 160-160Zm357.706 442.293 320 320c20.8 20.8 20.8 54.614 0 75.414l-320 320-75.413-75.414 228.907-228.906H906.613V1013.72h831.254L1508.96 784.707l75.413-75.414Zm-357.706-335.626H160c-29.44 0-53.333 24-53.333 53.333v160H1280V427c0-29.333-23.893-53.333-53.333-53.333Z" fill-rule="evenodd"></path></g></svg><span class="screenreader-only">Links to an external site.</span></span></a> and paste the starting code on the left, and your fixed code on the right. Take a screenshot of the resulting difference.</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;</p>
+<h4>Task 2: Refactor (<em>30 m</em>)</h4>
+<p>Now that you have a correct solution, let's turn on some code analysis tools from Microsoft to improve the code, and crank them up.</p>
+<p>Microsoft provides a lot of good options for code analysis: <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview?tabs=net-10" target="_blank" rel="noreferrer noopener" class="external"><span>https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview?tabs=net-10</span><span class="external_link_icon" style="margin-inline-start: 5px; display: inline-block; text-indent: initial; " role="presentation"><svg name="IconExternalLink" viewBox="0 0 1920 1920" rotate="0" data-cid="InlineSVG SVGIcon" style="width:1em; height:1em; vertical-align:middle; fill:currentColor" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="css-1xnn9jb-inlineSVG-svgIcon"><g role="presentation"><path d="M1226.667 267c88.213 0 160 71.787 160 160v426.667H1280v-160H106.667v800C106.667 1523 130.56 1547 160 1547h1066.667c29.44 0 53.333-24 53.333-53.333v-213.334h106.667v213.334c0 88.213-71.787 160-160 160H160c-88.213 0-160-71.787-160-160V427c0-88.213 71.787-160 160-160Zm357.706 442.293 320 320c20.8 20.8 20.8 54.614 0 75.414l-320 320-75.413-75.414 228.907-228.906H906.613V1013.72h831.254L1508.96 784.707l75.413-75.414Zm-357.706-335.626H160c-29.44 0-53.333 24-53.333 53.333v160H1280V427c0-29.333-23.893-53.333-53.333-53.333Z" fill-rule="evenodd"></path></g></svg><span class="screenreader-only">Links to an external site.</span></span></a></p>
+<p>Open your Topic4A (or equivalent) <code>.csproj</code> file and change it so it looks like this.</p>
+<p>&nbsp;</p>
+<div class="dp-panels-wrapper dp-accordion-default">
+
+<h3 class="dp-panel-heading dp-panels-built" id="dpPanel2"><a href="#dpPanel2" role="button" class="dp-panel-toggler ," aria-controls="dpPanel2Content" aria-expanded="false"><i class="dp-panel-icon fas fa-caret-up" aria-hidden="true"></i> <span>Topic4A.csproj</span></a></h3>
+<div class="dp-panel-content" tabindex="0" id="dpPanel2Content" style="display: none;" aria-labelledby="dpPanel2" role="region">
+<div style="color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: &quot;Droid Sans Mono&quot;, monospace; font-size: 14px; line-height: 19px;">
+<div><span style="font-size: 10pt;"><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">Project</span><span style="color: #cccccc;"> </span><span style="color: #9cdcfe;">Sdk</span><span style="color: #cccccc;">=</span><span style="color: #ce9178;">"Microsoft.NET.Sdk"</span><span style="color: #808080;">&gt;</span></span></div>
+<br>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">PropertyGroup</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">OutputType</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">Exe</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">OutputType</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">TargetFramework</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">net10.0</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">TargetFramework</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">ImplicitUsings</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">enable</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">ImplicitUsings</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">Nullable</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">enable</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">Nullable</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">AnalysisMode</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">All</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">AnalysisMode</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">EnforceCodeStyleInBuild</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">true</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">EnforceCodeStyleInBuild</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">AnalysisLevelStyle</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">latest-all</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">AnalysisLevelStyle</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">AnalysisLevelDesign</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">latest-all</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">AnalysisLevelDesign</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">AnalysisLevelNaming</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">latest-all</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">AnalysisLevelNaming</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">AnalysisLevelReliability</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">latest-all</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">AnalysisLevelReliability</span><span style="color: #808080;">&gt;</span></span></div>
+<div><span style="font-size: 10pt;"><span style="color: #cccccc;"> </span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">PropertyGroup</span><span style="color: #808080;">&gt;</span></span></div>
+<br>
+<div><span style="font-size: 10pt;"><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">Project</span><span style="color: #808080;">&gt;</span></span></div>
+</div>
+</div>
+
+</div>
+<p>This turns on a number of analysis tools and sets them to "all" (very pedantic). Following this prac, you might want to set the <code>AnalysisMode</code> to "<code>Recommended</code>" and the <code>AnalysisLevel</code> to "latest-recommended" instead. <a href="https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#code-analysis-properties" target="_blank" rel="noreferrer noopener" class="external"><span>https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#code-analysis-properties</span><span class="external_link_icon" style="margin-inline-start: 5px; display: inline-block; text-indent: initial; " role="presentation"><svg name="IconExternalLink" viewBox="0 0 1920 1920" rotate="0" data-cid="InlineSVG SVGIcon" style="width:1em; height:1em; vertical-align:middle; fill:currentColor" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="css-1xnn9jb-inlineSVG-svgIcon"><g role="presentation"><path d="M1226.667 267c88.213 0 160 71.787 160 160v426.667H1280v-160H106.667v800C106.667 1523 130.56 1547 160 1547h1066.667c29.44 0 53.333-24 53.333-53.333v-213.334h106.667v213.334c0 88.213-71.787 160-160 160H160c-88.213 0-160-71.787-160-160V427c0-88.213 71.787-160 160-160Zm357.706 442.293 320 320c20.8 20.8 20.8 54.614 0 75.414l-320 320-75.413-75.414 228.907-228.906H906.613V1013.72h831.254L1508.96 784.707l75.413-75.414Zm-357.706-335.626H160c-29.44 0-53.333 24-53.333 53.333v160H1280V427c0-29.333-23.893-53.333-53.333-53.333Z" fill-rule="evenodd"></path></g></svg><span class="screenreader-only">Links to an external site.</span></span></a></p>
+<p>In addition to the new yellow squigglies in VS Code, try to build your project with <code>dotnet build</code> to see all the additional Warnings that are generated.</p>
+<p><img src="https://learn.adelaide.edu.au/courses/30652/files/4490795/preview" alt="image.png" width="272" height="151" data-api-endpoint="https://learn.adelaide.edu.au/api/v1/courses/30652/files/4490795" data-api-returntype="File" loading="lazy" data-width="272"> <img src="https://learn.adelaide.edu.au/courses/30652/files/4490796/preview" alt="image.png" width="291" height="151" data-api-endpoint="https://learn.adelaide.edu.au/api/v1/courses/30652/files/4490796" data-api-returntype="File" loading="lazy" data-width="291"></p>
+<p>Armed with this new information, examine the warnings and recommendations you have recieved, and refactor your newly fixed <code>BrokenProgram</code> to improve general readability and address some of the warnings. Use your judgement to decide whether a warning actually needs to be addressed or not.</p>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary dp-callout-type-default">
+<div class="card-body">
+<h3 class="card-title">Output</h3>
+<ul>
+<li>Screenshot of all the new IDE squigglies, before &amp; after refactoring</li>
+<li>Screenshot of all your new build Warnings, before &amp; after refactoring</li>
+</ul>
+</div>
+</div>
+<p>&nbsp;</p>
+<h4>Task 3: &nbsp;Commit and Reflect (<em>30 m</em>)</h4>
+<p>Ensure you've commited and pushed your corrected and refactored code, then answer the following reflection questions.</p>
+<div class="dp-callout dp-callout-placeholder card dp-callout-position-default dp-callout-color-dp-primary cp-out-primary dp-border-dir-all dp-callout-type-info dp-action-box dp-action">
+<div class="dp-callout-side-emphasis"><i class="dp-icon far fa-hand-pointer dp-default-icon">​</i></div>
+<div class="card-body">
+<h3 class="card-title">Reflection</h3>
+<p class="card-text dp-border-dir-none">1. Of all the values in the <code>items</code> list, only one of them was wrong. Which value was incorrect? Why were all the other values still correct?</p>
+<p class="card-text dp-border-dir-none">2. What was going wrong when iterating through the <code>symbols</code> list?</p>
+<p class="card-text dp-border-dir-none">3. How did stepping through the code and using the debugger help you find the issues?</p>
+<p class="card-text dp-border-dir-none">4. Pick 3 issues that you fixed based on the new code analysis rules - how did they improve your code?</p>
+<p class="card-text dp-border-dir-none">5. Pick 3 issues that you decided not to fix based on the new code analysis rules - why didn't they need to be fixed?</p>
+</div>
+</div>
+</div>
+</div>
+  
+  
+<div id="assign-to-mount-point"></div>
+<div id="choose-editor-mount-point"></div>
+</div>
